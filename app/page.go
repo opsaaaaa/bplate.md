@@ -14,14 +14,17 @@ type PageOptions struct {
 }
 
 const (
-  TAB = "	"
+  TAB = " "
   DOUBLESPACE = "  "
   NEWLINE = "\n"
 )
 
 func MakePage(name string, options PageOptions) {
   path := filepath.Join("_boilerplates", name)
-  header, template := ReadBoilerplate(path)
+  template, header, err := ReadBoilerplate(path)
+  if err != nil {
+    log.Fatal(err)
+  }
   fmt.Println(header)
   fmt.Println(template)
 
@@ -40,19 +43,20 @@ const (
 /*
   Extract the header and template from the boilerplate file.
 */
-func ReadBoilerplate(path string) (header string, template string) {
+func ReadBoilerplate(path string) (template string, header string, err error) {
     inHeader := BEFORE_HEADER
 
     file, err := os.Open(path)
 
-    if err != nil {
-        log.Fatalf("Error when opening file: %s", err)
+    if err != nil { 
+      file.Close()
+      return
     }
 
     fileScanner := bufio.NewScanner(file)
 
     for fileScanner.Scan() {
-      line := fileScanner.Text()+NEWLINE
+      line := fileScanner.Text() + NEWLINE
 
       switch inHeader {
       case BEFORE_HEADER:
@@ -75,8 +79,9 @@ func ReadBoilerplate(path string) (header string, template string) {
 
     }
 
-    if err := fileScanner.Err(); err != nil {
-        log.Fatalf("Error while reading file: %s", err)
+    if err = fileScanner.Err(); err != nil {
+      file.Close()
+      return
     }
 
     file.Close()
