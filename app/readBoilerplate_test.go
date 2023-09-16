@@ -7,7 +7,7 @@ import (
   "github.com/opsaaaaa/bplate.md/spec"
 )
 
-func TestReadBoilerplate(t *testing.T) {
+func Test_readBoilerplate(t *testing.T) {
   happyPath := func () {
     template, header, err := readBoilerplate("../_boilerplates/test.md")
 
