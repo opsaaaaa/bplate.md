@@ -1,16 +1,15 @@
-package app_test
+package app
 
 import (
-	"os"
-	"testing"
+  "os"
+  "testing"
 
-	"github.com/opsaaaaa/bplate.md/app"
-	"github.com/opsaaaaa/bplate.md/spec"
+  "github.com/opsaaaaa/bplate.md/spec"
 )
 
 func TestReadBoilerplate(t *testing.T) {
-  exampleSuccessful := func () {
-    template, header, err := app.ReadBoilerplate("../_boilerplates/test.md")
+  happyPath := func () {
+    template, header, err := readBoilerplate("../_boilerplates/test.md")
 
     if err != nil { 
       t.Log(os.Getwd())
@@ -29,7 +28,15 @@ func TestReadBoilerplate(t *testing.T) {
     spec.AssertContains(t, template, "author:", "template must include author:")
     spec.AssertContains(t, template, "Default Test Heading", "template must include Default Test Heading")
   }
-  exampleSuccessful()
+  happyPath()
+
+  fileErroPath := func () {
+    _, _, err := readBoilerplate("../_boilerplates/nonExistantFile.md")
+    if err == nil {
+      t.Fatal("It must return an err when reading non existant files")
+    }
+  }
+  fileErroPath()
 }
 
 

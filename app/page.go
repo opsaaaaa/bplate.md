@@ -1,27 +1,19 @@
 package app
 
 import (
-	"bufio"
-	"fmt"
-	"log"
-	"os"
-	"path/filepath"
-	"strings"
+  "fmt"
+  "log"
+  "path/filepath"
 )
 
 type PageOptions struct {
 
 }
 
-const (
-  TAB = " "
-  DOUBLESPACE = "  "
-  NEWLINE = "\n"
-)
 
 func MakePage(name string, options PageOptions) {
   path := filepath.Join("_boilerplates", name)
-  template, header, err := ReadBoilerplate(path)
+  template, header, err := readBoilerplate(path)
   if err != nil {
     log.Fatal(err)
   }
@@ -34,61 +26,4 @@ func MakePage(name string, options PageOptions) {
 
 
 }
-
-const (
-  BEFORE_HEADER = 0
-  INSIDE_HEADER = 1
-  AFTER_HEADER = 2
-)
-/*
-  Extract the header and template from the boilerplate file.
-*/
-func ReadBoilerplate(path string) (template string, header string, err error) {
-    inHeader := BEFORE_HEADER
-
-    file, err := os.Open(path)
-
-    if err != nil { 
-      file.Close()
-      return
-    }
-
-    fileScanner := bufio.NewScanner(file)
-
-    for fileScanner.Scan() {
-      line := fileScanner.Text() + NEWLINE
-
-      switch inHeader {
-      case BEFORE_HEADER:
-        if strings.HasPrefix(line, "_boilerplate:") {
-          inHeader = INSIDE_HEADER
-          header += line
-          continue
-        }
-        template += line
-      case INSIDE_HEADER:
-        if line != NEWLINE && !strings.HasPrefix(line, DOUBLESPACE) && !strings.HasPrefix(line, TAB) {
-          inHeader = AFTER_HEADER
-          template += line
-          continue
-        }
-        header += line
-      default:
-        template += line
-      }
-
-    }
-
-    if err = fileScanner.Err(); err != nil {
-      file.Close()
-      return
-    }
-
-    file.Close()
-    return
-}
-
-
-
-
 
