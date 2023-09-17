@@ -18,6 +18,9 @@
 
 - [x] figure out a way to pass userdefined values
 
+- [] figure out if go templating language is suitable.
+    - I think I wast it to leave in place any tags that don't have relavant data.
+    - Actaully idk. It might be fine, for my usecases.
 
 # FEATURES
 
@@ -31,4 +34,5 @@
     - loop over fileExists() with each value until we can create the file.
 - [] date string.
     - accepts a formate string %Y-%m-%d
+
 
