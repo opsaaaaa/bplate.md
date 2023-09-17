@@ -4,10 +4,7 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
-
-	"gopkg.in/yaml.v3"
 )
-// m := make(map[string]int)
 
 func MakePage(name string, options PageOptions) {
   var err error
@@ -16,16 +13,15 @@ func MakePage(name string, options PageOptions) {
 
   if err != nil { log.Fatal(err) }
 
-  var headerOptions PageOptions
-  err = yaml.Unmarshal([]byte(header), &headerOptions)
+  headerOpt, err := parseYamlOptions(header)
 
   if err != nil { log.Fatal(err) }
 
-  fmt.Println(headerOptions)
+  fmt.Println(headerOpt)
   fmt.Println(template)
 
   // data, err := os.ReadFile(path)
-
+  // m := make(map[string]int)
   // strings.Cut(::)
 
 
