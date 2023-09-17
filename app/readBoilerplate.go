@@ -35,17 +35,17 @@ func readBoilerplate(path string) (template string, header string, err error) {
       case BEFORE_HEADER:
         if strings.HasPrefix(line, "_boilerplate:") {
           inHeader = INSIDE_HEADER
-          header += line
           continue
         }
         template += line
       case INSIDE_HEADER:
-        if line != NEWLINE && !strings.HasPrefix(line, DOUBLESPACE) && !strings.HasPrefix(line, TAB) {
+        if line == NEWLINE { continue }
+        if !strings.HasPrefix(line, DOUBLESPACE) && !strings.HasPrefix(line, TAB) {
           inHeader = AFTER_HEADER
           template += line
           continue
         }
-        header += line
+        header += strings.TrimPrefix(strings.TrimPrefix(line, TAB), DOUBLESPACE)
       default:
         template += line
       }
