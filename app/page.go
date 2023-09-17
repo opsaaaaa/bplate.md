@@ -13,7 +13,10 @@ func MakePage(name string, options PageOptions) {
 
   if err != nil { log.Fatal(err) }
 
-  headerOpt, err := parseYamlOptions(header)
+  headerOpt := PageOptions{
+    Ext: filepath.Ext(name),
+  }
+  err = parseYamlOptions(&headerOpt,header)
 
   if err != nil { log.Fatal(err) }
 

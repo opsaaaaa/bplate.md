@@ -7,15 +7,24 @@ import (
 )
 
 func Test_parseYamlOptions(t *testing.T) {
-  o, err := parseYamlOptions("path: _posts\ntimestamp: true")
+  happyPath := func () {
+    var o PageOptions
+    err := parseYamlOptions(&o,"path: _posts\ntimestamp: true\nargs: [one, two, three]")
 
-  spec.AssertErrorNil(t, err)
-  spec.AssertSame(t, o.Path, "_posts")
-  spec.AssertSame(t, o.Timestamp, true)
+    spec.AssertErrorNil(t, err)
+    spec.AssertSame(t, o.Path, "_posts")
+    spec.AssertSame(t, o.Timestamp, true)
+    spec.AssertSame(t, len(o.Args), 3)
+  }
+  happyPath()
 
-  o, _ = parseYamlOptions("")
-  spec.AssertSame(t, o.Path, "")
-  spec.AssertSame(t, o.Timestamp, false)
+  emptyTxt := func () {
+    var o PageOptions
+    _ = parseYamlOptions(&o, "")
+    spec.AssertSame(t, o.Path, "")
+    spec.AssertSame(t, o.Timestamp, false)
+  }
+  emptyTxt()
 }
 
 

@@ -1,5 +1,5 @@
 
-
+# BASE
 
 - [x] create a command for each file in the _boilerplate folder
 - [x] the user runs the new page command.
@@ -14,7 +14,21 @@
 - [] write the new file
 
 
-- [] figure out a way to pass userdefined values
+# OTHER
+
+- [x] figure out a way to pass userdefined values
 
 
+# FEATURES
+
+- [] custom path
+- [] custom slug pattern
+- [] user defined command options.
+- [] counter
+    - the incremnt the filename by one.
+    - works with slug { count }
+    - takes a decimal place for 002
+    - loop over fileExists() with each value until we can create the file.
+- [] date string.
+    - accepts a formate string %Y-%m-%d
 

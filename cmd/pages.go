@@ -36,7 +36,7 @@ func init() {
               to quickly create a Cobra application.`,
 
       Run: func(cmd *cobra.Command, args []string) {
-
+        log.Printf("%v %d", args, len(args))
         app.MakePage(d.Name(), app.PageOptions{} )
       },
     }
