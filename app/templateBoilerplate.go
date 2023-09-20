@@ -14,7 +14,7 @@ type templateProps struct {
 }
 
 
-func buildFuncMap(opt PageOptions) template.FuncMap {
+func buildFuncMap(opt *PageOptions) template.FuncMap {
   fm := template.FuncMap{
     // These don't need opt
     "asFileSlug": func(s string) string {return asFileSlug(s)},
@@ -29,6 +29,7 @@ func buildFuncMap(opt PageOptions) template.FuncMap {
     "ext": func() string {return opt.Ext },
     "boilerplate": func() string {return opt.Boilerplate},
     "path": func() string {return opt.Path},
+    "arg": func(x int) string {if x < len(opt.Args) {return opt.Args[x]} else {return ""}},
     // filepath.Ext
     // filepath.Base
     // filepath.Dir
@@ -37,12 +38,18 @@ func buildFuncMap(opt PageOptions) template.FuncMap {
     // / \ ? % * ; | " ' < > . , = SPACE ` `
   }
   for idx, key := range opt.Command {
-    fm[key] = func() string {return opt.Args[idx]}
+    fm[key] = newCustomCommandArg(opt, idx, key)
   }
   return fm
 }
 
-func templateBoilerplate(txt string, opt PageOptions) (out string, err error) {
+func newCustomCommandArg(opt *PageOptions, idx int, key string) func() string {
+  return func() string {
+    return opt.Args[idx]
+  }
+}
+
+func templateBoilerplate(txt string, opt *PageOptions) (out string, err error) {
   tmpl, err := template.New(opt.Boilerplate).Funcs(buildFuncMap(opt)).Parse(txt)
   if err != nil { return }
   buf := new(bytes.Buffer)

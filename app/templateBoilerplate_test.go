@@ -8,10 +8,10 @@ import (
 )
 
 
-func Test_templateBoilerplate(t *testing.T) {
+func Test_templateBoilerplate_withSlug(t *testing.T) {
   txt, err := templateBoilerplate(
     "{{ path }}/{{ date }}-{{ title | asFileSlug }}{{ ext }}", 
-    PageOptions{
+    &PageOptions{
       Path: "_posts",
       Boilerplate: "post.md",
       Ext: ".md",
@@ -21,6 +21,18 @@ func Test_templateBoilerplate(t *testing.T) {
   )
   spec.AssertErrorNil(t, err)
   spec.AssertSame(t, txt, "_posts/"+time.Now().Format(time.DateOnly)+"-foo-bar.md")
+}
+
+func Test_templateBoilerplate_withMultipleArgs(t *testing.T) {
+  txt, err := templateBoilerplate(
+    "{{ one }}, {{ two }}, {{ three }}, {{ arg 0 }}, {{ arg 1 }}, {{ arg 2}}, {{ arg 3 }}", 
+    &PageOptions{
+      Args: []string{"1","2","3"},
+      Command: []string{"one", "two", "three"},
+    },
+  )
+  spec.AssertErrorNil(t, err)
+  spec.AssertSame(t, txt, "1, 2, 3, 1, 2, 3, ")
 }
 
 func Test_asFileSlug(t *testing.T) {

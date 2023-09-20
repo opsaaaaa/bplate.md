@@ -7,19 +7,20 @@ _boilerplate:
   timestamp: false
 
   type: testing
-  title: title
-  num: 130 
+  num: 130
 
+  command: [title, custom, tags]
   path: test
      
 author: John Doe
-title: {{ boilerplate.title }}
+title: {{ title }}
 
-created: {{ boilerplate.time }}
-random_url: {{ boilerplate.random }}
-random_url: {{ boilerplate.random=5 }}
-custom: {{ boilerplate.custom }}
-num: {{ boilerplate.num }}
+created: {{ dateTime }}
+random_url:
+random_url:
+custom: {{ custom }}
+num: {{ "num" }}
+tags: {{ tags }}
 ---
 
 
@@ -28,5 +29,5 @@ Default Test Heading
 
 some boilerplate text
 
-Type is {{ boilerplate.type }}
-File is {{ boilerplate.file }}
+Type is {{ boilerplate }}
+
