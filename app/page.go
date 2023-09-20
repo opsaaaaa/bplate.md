@@ -13,7 +13,7 @@ func MakePage(name string, options PageOptions) {
 
   if err != nil { log.Fatal(err) }
 
-  opt, err := getOptions(header)
+  opt, err := parseOptions(header)
 
   if err != nil { log.Fatal(err) }
 

@@ -6,10 +6,9 @@ import (
   "github.com/opsaaaaa/bplate.md/spec"
 )
 
-func Test_parseYamlOptions(t *testing.T) {
+func Test_parseOptions(t *testing.T) {
   happyPath := func () {
-    var o PageOptions
-    err := parseYamlOptions(&o,"path: _posts\ntimestamp: true\nargs: [one, two, three]")
+    o, err := parseOptions("path: _posts\ntimestamp: true\nargs: [one, two, three]")
 
     spec.AssertErrorNil(t, err)
     spec.AssertSame(t, o.Path, "_posts")
@@ -19,8 +18,7 @@ func Test_parseYamlOptions(t *testing.T) {
   happyPath()
 
   emptyTxt := func () {
-    var o PageOptions
-    _ = parseYamlOptions(&o, "")
+    o, _ := parseOptions("")
     spec.AssertSame(t, o.Path, "")
     spec.AssertSame(t, o.Timestamp, false)
   }

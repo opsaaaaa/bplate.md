@@ -8,6 +8,7 @@
 - [x] Extract out the template from the boilerplate file without the header.
 - [x] Write the first test
 - [x] parse the header options
+- [] collect 
 - [] Mix the default options with then header options then the flag options.
 - [] check for missing options. like path.
 - [] Template the boilerplate with the options
@@ -24,6 +25,7 @@
 
 # FEATURES
 
+- [] flag overide options.
 - [] custom path
 - [] custom slug pattern
 - [] user defined command options.

@@ -19,7 +19,7 @@ type PageOptions struct {
   // filepath.Dir
 }
 
-func getOptions(txt string) (opt PageOptions,err error) {
+func parseOptions(txt string) (opt PageOptions,err error) {
   opt = defaultPageOptions()
   err = parseYamlOptions(&opt, txt)
   // TODO input flag options 
