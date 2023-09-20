@@ -37,7 +37,7 @@ func init() {
 
       Run: func(cmd *cobra.Command, args []string) {
         log.Printf("%v %d", args, len(args))
-        app.MakePage(d.Name(), app.PageOptions{} )
+        app.MakePage(d.Name(), args)
       },
     }
 

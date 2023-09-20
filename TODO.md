@@ -8,9 +8,8 @@
 - [x] Extract out the template from the boilerplate file without the header.
 - [x] Write the first test
 - [x] parse the header options
-- [] collect 
-- [] Mix the default options with then header options then the flag options.
-- [] check for missing options. like path.
+- [x] Mix the default options with then header options. (do flag options later)
+- [x] check for missing options. like path.
 - [] Template the boilerplate with the options
 - [] write the new file
 
@@ -25,6 +24,8 @@
 
 # FEATURES
 
+- [] add file counter slug feature with 001.md 002.md
+- [] add default command args to header
 - [] flag overide options.
 - [] custom path
 - [] custom slug pattern

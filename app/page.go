@@ -6,14 +6,14 @@ import (
 	"path/filepath"
 )
 
-func MakePage(name string, options PageOptions) {
+func MakePage(name string, args []string) {
   var err error
   path := filepath.Join("_boilerplates", name)
   template, header, err := readBoilerplate(path)
 
   if err != nil { log.Fatal(err) }
 
-  opt, err := parseOptions(header)
+  opt, err := parseOptions(name,header,args)
 
   if err != nil { log.Fatal(err) }
 

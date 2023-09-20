@@ -1,15 +1,19 @@
 package app
 
 import (
+	"path/filepath"
+
 	"gopkg.in/yaml.v3"
 )
 
 type PageOptions struct {
   Path string `yaml:"path"`
-  Timestamp bool `yaml:"timestamp"`
   Args []string `yaml:"args"`
   Command []string `yaml:"command"`
+  // Defaults []string `yaml:"defaults"`
   Slug string `yaml:"slug"`
+  Ext string `yaml:"ext"`
+  Boilerplate string
   // Basename string
   // Slug string
   // File string
@@ -19,9 +23,14 @@ type PageOptions struct {
   // filepath.Dir
 }
 
-func parseOptions(txt string) (opt PageOptions,err error) {
+func parseOptions(name string, txt string, args []string) (opt PageOptions,err error) {
   opt = defaultPageOptions()
+  opt.Ext = filepath.Ext(name)
   err = parseYamlOptions(&opt, txt)
+  if len(args) > 0 {
+    opt.Args = args
+  }
+  opt.Boilerplate = name
   // TODO input flag options 
   return
 }
@@ -33,10 +42,10 @@ func parseYamlOptions(opt *PageOptions, txt string) (err error) {
 
 func defaultPageOptions() PageOptions {
   return PageOptions{
-    Timestamp: false,
     Args: []string{},
     Command: []string{"title"},
-    Slug: "{ safe(title) }{ ext }",
+    Slug: "{ title | safe }{ ext }",
+    Path: "./",
   }
 }
 
