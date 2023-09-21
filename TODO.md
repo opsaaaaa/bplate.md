@@ -1,18 +1,12 @@
 
-# BASE
+# MAIN
 
-- [x] create a command for each file in the _boilerplate folder
-- [x] the user runs the new page command.
-- [x] Open the boiler plate file associated with command
-- [x] Extract out the header options from the boilerplate file
-- [x] Extract out the template from the boilerplate file without the header.
-- [x] Write the first test
-- [x] parse the header options
-- [x] Mix the default options with then header options. (do flag options later)
-- [x] check for missing options. like path.
-- [x] Template the boilerplate with the options
-- [] write the new file
-
+- [] write a test for the page builder.
+- [] write some basic readme and review the internal command documentation.
+- [] build and executable and test it out locally.
+- [] figure out how to publish it and install it via go package manage.
+- [] write a readme.
+- [] release the application
 
 # OTHER
 
@@ -37,5 +31,23 @@
     - loop over fileExists() with each value until we can create the file.
 - [] date string.
     - accepts a formate string %Y-%m-%d
+- [] add some colors to the command.
+- [] refine the log messages. maybe just use fmt.print instead.
 
+
+
+# ALPHA 
+
+- [x] create a command for each file in the _boilerplate folder
+- [x] the user runs the new page command.
+- [x] Open the boiler plate file associated with command
+- [x] Extract out the header options from the boilerplate file
+- [x] Extract out the template from the boilerplate file without the header.
+- [x] Write the first test
+- [x] parse the header options
+- [x] Mix the default options with then header options. (do flag options later)
+- [x] check for missing options. like path.
+- [x] Template the boilerplate with the options
+- [x] write the new file
+DONE
 
