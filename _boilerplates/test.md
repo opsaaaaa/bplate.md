@@ -10,7 +10,7 @@ _boilerplate:
   num: 130
 
   command: [title, custom, tags]
-  path: test
+  path: tmp/test/folder
      
 author: John Doe
 title: {{ title }}

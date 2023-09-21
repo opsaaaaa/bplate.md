@@ -44,7 +44,7 @@ func defaultPageOptions() PageOptions {
   return PageOptions{
     Args: []string{},
     Command: []string{"title"},
-    Slug: "{ title | safe }{ ext }",
+    Slug: "{{ path }}/{{ title | asFileSlug }}{{ ext }}",
     Path: "./",
   }
 }

@@ -10,7 +10,7 @@
 - [x] parse the header options
 - [x] Mix the default options with then header options. (do flag options later)
 - [x] check for missing options. like path.
-- [] Template the boilerplate with the options
+- [x] Template the boilerplate with the options
 - [] write the new file
 
 
