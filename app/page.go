@@ -1,14 +1,14 @@
 package app
 
 import (
-	"errors"
 	"log"
 	"os"
 	"path/filepath"
 )
 
-func MakePage(name string, args []string) {
+func CreatePage(name string, args []string) {
   var err error
+  DoesFileExist(name)
   path := filepath.Join("_boilerplates", name)
 
   body, header, err := readBoilerplate(path)
@@ -21,8 +21,7 @@ func MakePage(name string, args []string) {
   slug, err := templateBoilerplate(opt.Slug, &opt)
   if err != nil { log.Fatalf("Can't parse slug:\n`%v`\n%v", opt.Slug, err) }
 
-  _, err = os.Stat(slug)
-  if !errors.Is(err, os.ErrNotExist) {
+  if DoesFileExist(slug) {
     log.Fatalf("File `%v` already exists.", slug)
   }
 

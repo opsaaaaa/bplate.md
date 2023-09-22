@@ -1,12 +1,18 @@
 
 # MAIN
 
+
 - [] write a test for the page builder.
+- [] the main command accepts a file path to the template.
+- [] make the sub tests their own functions
+
 - [] write some basic readme and review the internal command documentation.
 - [] build and executable and test it out locally.
 - [] figure out how to publish it and install it via go package manage.
 - [] write a readme.
 - [] release the application
+
+- [] std in and std out.
 
 # OTHER
 
