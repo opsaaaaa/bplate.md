@@ -4,9 +4,9 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"fmt"
 	"os"
 
-	"github.com/opsaaaaa/bplate.md/app"
 	"github.com/spf13/cobra"
 )
 
@@ -24,9 +24,10 @@ to quickly create a Cobra application.`,
   // has an action associated with it:
   Run: func(cmd *cobra.Command, args []string) {
     if len(args) == 0 {
-      cmd.Help()
       return
     }
+    fmt.Print("Yo ho Yo ho a Pirates life for me")
+    fmt.Println(args)
     // app.CreatePage(name, args)
   },
 }
