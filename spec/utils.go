@@ -13,7 +13,7 @@ func AssertSame(t *testing.T, a interface{}, b interface{}) {
 
 func AssertErrorNil(t *testing.T, err error) {
   if err != nil {
-    t.Fatal(err)
+    t.Error(err)
   }
 }
 

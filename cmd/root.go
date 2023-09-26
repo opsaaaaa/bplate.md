@@ -4,12 +4,30 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-	"os"
-	// "path/filepath"
+  "fmt"
+  "os"
 
-	"github.com/spf13/cobra"
+  // "path/filepath"
+
+  "github.com/opsaaaaa/bplate.md/app"
+  "github.com/spf13/cobra"
 )
+
+func RunRootCommand(cmd *cobra.Command, args []string) {
+  fmt.Printf("%v <boilerplate> [...args]\n", cmd.Name())
+  err := app.PrintList() 
+  if err != nil {
+    fmt.Printf("Failure: %v", err)
+  }
+}
+
+func AutoCompleteRootCommand(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
+  var comps []string
+  if len(args) == 0 {
+    comps = cobra.AppendActiveHelp(app.ListBoilerplateFiles(), "Specify a boilerplate to use.")
+  } 
+  return comps, cobra.ShellCompDirectiveNoFileComp
+}
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -29,13 +47,8 @@ to quickly create a Cobra application.`,
     // } 
     return nil
   },
-  Run: func(cmd *cobra.Command, args []string) {
-    fmt.Print("Yo ho Yo ho a Pirates life for me")
-    fmt.Println(args)
-
-    // 
-    // app.CreatePage(name, args)
-  },
+  Run: RunRootCommand,
+  ValidArgsFunction: AutoCompleteRootCommand,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

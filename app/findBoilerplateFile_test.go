@@ -7,37 +7,37 @@ import (
 	"github.com/opsaaaaa/bplate.md/spec"
 )
 
+func Test_findBoilerplateFile(t *testing.T) {
+  _ = os.Chdir("../test_cases")
 
-func Test_findBoilerplateFile_directPath(t *testing.T) {
-  _ = os.Chdir("../")
-  file, err := findBoilerplateFile(".boilerplates/example.md")
-  spec.AssertSame(t,file,".boilerplates/example.md")
+  file, err := findBoilerplateFile("zero/example_boilerplate.md")
+  spec.AssertSame(t,file,"zero/example_boilerplate.md")
   spec.AssertErrorNil(t,err)
-  _ = os.Chdir("app")
-}
 
-func Test_findBoilerplateFile_boilerplatesFolder(t *testing.T) {
-  _ = os.Chdir("../")
-  file, err := findBoilerplateFile("example.md")
-  spec.AssertSame(t,file,".boilerplates/example.md")
+  file, err = findBoilerplateFile("notes.md")
+  spec.AssertSame(t,file,".boilerplates/notes.md")
   spec.AssertErrorNil(t,err)
-  _ = os.Chdir("app")
-}
 
-func Test_findBoilerplateFile_boilerplateFile(t *testing.T) {
-  _ = os.Chdir("../")
-  file, err := findBoilerplateFile(".boilerplates/caseone")
-  spec.AssertSame(t,file,".boilerplates/caseone/.boilerplate")
+  file, err = findBoilerplateFile("one")
+  spec.AssertSame(t,file,"one/.boilerplate")
   spec.AssertErrorNil(t,err)
-  _ = os.Chdir("app")
-}
 
-func Test_findBoilerplateFile_boilerplateMdFile(t *testing.T) {
-  _ = os.Chdir("../")
-  file, err := findBoilerplateFile(".boilerplates/casetwo")
-  spec.AssertSame(t,file,".boilerplates/casetwo/.boilerplate.md")
+  file, err = findBoilerplateFile("two/")
+  spec.AssertSame(t,file,"two/.boilerplate.md")
   spec.AssertErrorNil(t,err)
-  _ = os.Chdir("app")
+
+  file, err = findBoilerplateFile("three/post")
+  spec.AssertSame(t,file,"three/post.boilerplate")
+  spec.AssertErrorNil(t,err)
+
+  file, err = findBoilerplateFile("four/post")
+  spec.AssertSame(t,file,"four/post.boilerplate.txt")
+  spec.AssertErrorNil(t,err)
+
+  _, err = findBoilerplateFile("a/missing/file/path")
+  if err == nil { t.Error("It should error on missing file paths.") }
+
+  _ = os.Chdir("../app")
 }
 
 
