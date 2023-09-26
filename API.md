@@ -1,4 +1,5 @@
 
+
 # Searchable
 
 any file with a name beginning with .boilerplate
@@ -50,6 +51,43 @@ wiki/facts/.boilerplate > wiki/facts/
 
 .boilerpates/post.md > post.md/
 _posts/.boilerplate > _posts
+
+# STDin
+
+Treat std in as the template
+
+# STDout
+
+
+# API AS SUB EXAMPLES
+
+bplate
+list all the boilerplates in the tree
+
+bplate list
+explicitly list all the boilerplates in the tree
+
+bplate new <path> [...args]
+create a new boilperplate file
+
+bplate create <path> [...args]
+create a new file from a boilerplate
+
+
+# API AS FLAG EXAMPLES
+
+bplate
+list all the boilerplates in the tree
+
+bplate --list
+explicitly list all the boilerplates in the tree
+
+bplate --new <path> [...args]
+create a new boilperplate file
+
+bplate <path> [...args]
+create a new file from a boilerplate
+
 
 
 # API USEAGE EXAMPLES

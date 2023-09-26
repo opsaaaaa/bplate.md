@@ -6,6 +6,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	// "path/filepath"
 
 	"github.com/spf13/cobra"
 )
@@ -22,12 +23,17 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
   // Uncomment the following line if your bare application
   // has an action associated with it:
+  Args: func(_ *cobra.Command, _ []string) error {
+    // if args[0] == nil {
+    //   return nil
+    // } 
+    return nil
+  },
   Run: func(cmd *cobra.Command, args []string) {
-    if len(args) == 0 {
-      return
-    }
     fmt.Print("Yo ho Yo ho a Pirates life for me")
     fmt.Println(args)
+
+    // 
     // app.CreatePage(name, args)
   },
 }
@@ -35,6 +41,7 @@ to quickly create a Cobra application.`,
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
+  // rootCmd.Run
   err := rootCmd.Execute()
   if err != nil {
     os.Exit(1)
