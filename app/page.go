@@ -1,17 +1,25 @@
 package app
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 )
 
 func CreatePage(name string, args []string) {
-  var err error
-  DoesFileExist(name)
-  path := filepath.Join("_boilerplates", name)
+  // var err error
+  // DoesFileExist(name)
+  // boilerplateFile := filepath.Join(BOILERPLATES_FOLDER, name)
+  boilerplateFile, err := findBoilerplateFile(name)
+  // TODO: suggest a way to create a new boilerplate.
+  if err != nil {
+    fmt.Printf("A boilerpate called `%v` doesn't exist.\nuse the `--new` flag to create one.\n%v\n",name,err)
+    os.Exit(1)
+    return
+  }
 
-  body, header, err := readBoilerplate(path)
+  body, header, err := readBoilerplate(boilerplateFile)
   if err != nil { log.Fatal(err) }
 
   opt, err := parseOptions(name,header,args)
@@ -46,7 +54,7 @@ func CreatePage(name string, args []string) {
   }
 
   log.Printf("Created `%v` from `%v` boilerplate.", slug,name)
-  // data, err := os.ReadFile(path)
+  // data, err := os.ReadFile(boilerplateFile)
   // m := make(map[string]int)
   // strings.Cut(::)
 

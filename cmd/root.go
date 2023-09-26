@@ -14,11 +14,20 @@ import (
 )
 
 func RunRootCommand(cmd *cobra.Command, args []string) {
-  fmt.Printf("%v <boilerplate> [...args]\n", cmd.Name())
-  err := app.PrintList() 
-  if err != nil {
-    fmt.Printf("Failure: %v", err)
+  if len(args) == 0 {
+    fmt.Println("Specify a boilerplate file to use.")
+    fmt.Printf("%v <path> [...args]\n", cmd.Name())
+    list := app.ListBoilerplateFiles()
+    if len(list) == 0 {
+      fmt.Printf("Cant find any boilerplate files. Use `%v --new <path> [..args]` to create one.", cmd.Name())
+    } else {
+      app.PrintList(list)
+    }
+    return
   }
+
+  app.CreatePage(args[0], args[1:])
+  fmt.Print("Think fast")
 }
 
 func AutoCompleteRootCommand(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {

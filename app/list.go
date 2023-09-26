@@ -9,15 +9,10 @@ import (
 )
 
 
-func PrintList() (err error) {
-
-  list := ListBoilerplateFiles()
-
+func PrintList(list []string) {
   for _, path := range list {
     fmt.Printf("    %v\n", path)
   }
-
-  return
 }
 
 

@@ -2,7 +2,8 @@
 # API CHANGES
 
 - [x] make a funciton to find boilerplate files.
-- [] make a function to list boilerplate files within the tree.
+- [x] make a function to list boilerplate files within the tree.
+- [] make it call the boilerplate page
 
 
 # MAIN
