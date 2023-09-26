@@ -1,6 +1,13 @@
 
+# API CHANGES
+
+- [x] make a funciton to find boilerplate files.
+- [] make a function to list boilerplate files within the tree.
+
+
 # MAIN
 
+- [] move everyting into the main package. idk for the heck of it.
 - [] write a test for the page builder.
 - [] the main command accepts a file path to the template.
 - [] make the sub tests their own functions
