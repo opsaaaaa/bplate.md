@@ -50,7 +50,12 @@ func newCustomCommandArg(opt *PageOptions, idx int, key string) func() string {
 }
 
 func templateBoilerplate(txt string, opt *PageOptions) (out string, err error) {
-  tmpl, err := template.New(opt.Boilerplate).Funcs(buildFuncMap(opt)).Parse(txt)
+  return templateWithDelims(txt, opt, "{b ", "}")
+}
+
+
+func templateWithDelims(txt string, opt *PageOptions, start string, end string) (out string, err error) {
+  tmpl, err := template.New(opt.Boilerplate).Delims(start, end).Funcs(buildFuncMap(opt)).Parse(txt)
   if err != nil { return }
   buf := new(bytes.Buffer)
   err = tmpl.Execute(buf,templateProps{Count: 30})

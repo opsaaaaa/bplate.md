@@ -14,6 +14,12 @@ import (
 )
 
 func RunRootCommand(cmd *cobra.Command, args []string) {
+  if newFlag ,_ := cmd.Flags().GetBool("new"); newFlag {
+    file, err := app.CreateNewBoilerplate(args[0], args[1:])
+    if err != nil { fmt.Printf("Create new boilerplate file failed:\n%v\n", err) }
+    fmt.Print(file)
+    return
+  }
   if len(args) == 0 {
     fmt.Println("Specify a boilerplate file to use.")
     fmt.Printf("%v <path> [...args]\n", cmd.Name())
@@ -79,7 +85,8 @@ func init() {
 
   // Cobra also supports local flags, which will only run
   // when this action is called directly.
-  rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+  // rootCmd.Flags().Boo
+  rootCmd.Flags().BoolP("new", "n", false, "Creates a new boilerplate")
 }
 
 

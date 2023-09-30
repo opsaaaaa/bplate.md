@@ -10,7 +10,7 @@ import (
 
 func Test_templateBoilerplate_withSlug(t *testing.T) {
   txt, err := templateBoilerplate(
-    "{{ path }}/{{ date }}-{{ title | asFileSlug }}{{ ext }}", 
+    "{b path }/{b date }-{b title | asFileSlug }{b ext}", 
     &PageOptions{
       Path: "_posts",
       Boilerplate: "post.md",
@@ -25,7 +25,7 @@ func Test_templateBoilerplate_withSlug(t *testing.T) {
 
 func Test_templateBoilerplate_withMultipleArgs(t *testing.T) {
   txt, err := templateBoilerplate(
-    "{{ one }}, {{ two }}, {{ three }}, {{ arg 0 }}, {{ arg 1 }}, {{ arg 2}}, {{ arg 3 }}", 
+    "{b one }, {b two }, {b three }, {b arg 0 }, {b arg 1 }, {b arg 2}, {b arg 3 }", 
     &PageOptions{
       Args: []string{"1","2","3"},
       Command: []string{"one", "two", "three"},

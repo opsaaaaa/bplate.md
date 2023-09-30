@@ -13,9 +13,9 @@ type exampleProps struct {
 }
 
 func Test_template(t *testing.T) {
-  tmpl, err := template.New("example").Funcs(template.FuncMap{
+  tmpl, err := template.New("example").Delims("{b ", "}").Funcs(template.FuncMap{
     "funci": func() string {return "sploosh"},
-  }).Parse("{{ .Count }} {{ funci }}")
+  }).Parse("{b .Count } {b funci }")
 
   spec.AssertErrorNil(t,err)
 

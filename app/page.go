@@ -12,7 +12,6 @@ func CreatePage(name string, args []string) {
   // DoesFileExist(name)
   // boilerplateFile := filepath.Join(BOILERPLATES_FOLDER, name)
   boilerplateFile, err := findBoilerplateFile(name)
-  // TODO: suggest a way to create a new boilerplate.
   if err != nil {
     fmt.Printf("A boilerpate called `%v` doesn't exist.\nuse the `--new` flag to create one.\n%v\n",name,err)
     os.Exit(1)

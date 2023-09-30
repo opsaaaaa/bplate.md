@@ -33,8 +33,17 @@ Don't list any files. that
 
 # new
 
+## strat 1 be smart. pick the best place
+path exists as a file > error, that file already exists.
+path esists as a folder > notes/.boilerplate creaste a .boilerplate file
+path doesn't exist, and its Dir does.
 notes > notes/.boilerplate (if notes is a folder then create a notes/.boilerplate file)
 notes > .boilerplates/notes (if it dosne't exist, then create a file in the .boilerplates folder)
+
+## strat 2 be dumb. always pick the .boilerplates folder.
+.boilerplates/path already esists > error, that boilerplate aready esists
+.boilerplates/path is a folder > create the boilerplate file without complaint.
+.boilerplates/path doesn't exist. > create it without complaint.
 
 wiki/facts > wiki/facts/.boilerplate
 wiki/facts > .boilerplates/wiki/facts
